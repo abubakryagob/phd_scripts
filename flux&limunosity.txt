@@ -1,0 +1,260 @@
+# Calculate the flux of SWIFT data
+
+abubakar@abubakar-laptop:~/work/swift/01005428000/new28000$ fdump sw01005428000xpcw3po_cl.evt
+
+
+abubakar@abubakar-laptop:~/work/swift/01005428000/new28000$ fkeyprint sw01005428000xpcw3po_cl.evt date
+ 
+# FILE: sw01005428000xpcw3po_cl.evt
+# KEYNAME: DATE
+ 
+# EXTENSION:    0
+DATE-OBS= '2020-11-11T09:46:28' / Start date of observations (mjd=59164.40726852)
+DATE-END= '2020-11-11T10:15:10' / End date of observations (mjd=59164.42719907)
+DATE    = '2020-11-26T22:35:18' / file creation date (YYYY-MM-DDThh:mm:ss UT)
+ 
+# EXTENSION:    1
+DATE-OBS= '2020-11-11T09:46:28' / Start date of observations
+DATE-END= '2020-11-11T10:15:10' / End date of observations
+DATE    = '2020-11-26T22:35:18' / file creation date (YYYY-MM-DDThh:mm:ss UT)
+ 
+# EXTENSION:    2
+DATE-OBS= '2020-11-11T09:46:28' / Start date of observations
+DATE-END= '2020-11-11T10:15:10' / End date of observations
+DATE    = '2020-11-26T22:35:18' / file creation date (YYYY-MM-DDThh:mm:ss UT)
+ 
+# EXTENSION:    3
+DATE    = '2020-11-26T22:35:16' / FITS file creation date
+ 
+# EXTENSION:    4
+DATE    = '2020-11-26T22:35:16' / FITS file creation date
+DATE-OBS= '2020-11-11T09:46:28' / Date and time of observation start
+DATE-END= '2020-11-11T10:15:10' / date and time of observation stop
+
+
+
+================================
+XSPEC12>fkeyprint sw01004219000xpcw3po_cl.evt date
+ 
+# FILE: sw01004219000xpcw3po_cl.evt
+# KEYNAME: DATE
+ 
+# EXTENSION:    0
+DATE-OBS= '2020-11-05T02:24:07' / Start date of observations (mjd= 59158.10008102)
+DATE-END= '2020-11-05T02:52:52' / End date of observations (mjd= 59158.12004630)
+DATE    = '2020-11-26T12:39:36' / file creation date (YYYY-MM-DDThh:mm:ss UT)
+ 
+# EXTENSION:    1
+DATE-OBS= '2020-11-05T02:24:07' / Start date of observations
+DATE-END= '2020-11-05T02:52:52' / End date of observations
+DATE    = '2020-11-26T12:39:36' / file creation date (YYYY-MM-DDThh:mm:ss UT)
+ 
+# EXTENSION:    2
+DATE-OBS= '2020-11-05T02:24:07' / Start date of observations
+DATE-END= '2020-11-05T02:52:52' / End date of observations
+DATE    = '2020-11-26T12:39:36' / file creation date (YYYY-MM-DDThh:mm:ss UT)
+ 
+# EXTENSION:    3
+DATE    = '2020-11-26T12:39:33' / FITS file creation date
+ 
+# EXTENSION:    4
+DATE    = '2020-11-26T12:39:32' / FITS file creation date
+DATE-OBS= '2020-11-05T02:24:07' / Date and time of observation start
+DATE-END= '2020-11-05T02:52:52' / date and time of observation stop
+/home/abubakar/HEASoft/heasoft-6.28/x86_64-pc-linux-gnu-libc2.23/bin/fkeyprint
+XSPEC12>
+==================================================
+
+
+# After editing the model to iclude the cflux, freez the normalzations for 
+all parpmeter, fit we get the flux and get the error (the flux valu must be 
+multiply by 10).
+
+# Calculate the absorbed flux (cflux*tbabs(bbodyrad+bbodyrad))
+
+ 3    1   cflux      lg10Flux   cgs      -10.6361     +/-  3.63755E-02 
+11    1   cflux      lg10Flux   cgs      -10.5265     +/-  4.99132E-02  
+
+# the clux valu must be multiplied by 10
+
+# geting the error at 1 sigma for the flux
+XSPEC12>error 1. 3
+ Parameter   Confidence Range (1)
+     3     -10.6745     -10.6006    (-0.0384421,0.0354904)
+XSPEC12>error 1. 11
+ Parameter   Confidence Range (1)
+    11     -10.5806     -10.4792    (-0.0541013,0.0472786)
+
+# the error with 90% confidence range
+XSPEC12>error 2.706 3
+ Parameter   Confidence Range (2.706)
+     3     -10.7018     -10.5788    (-0.0657295,0.0573019)
+XSPEC12>error 2.706 11
+ Parameter   Confidence Range (2.706)
+    11     -10.6217     -10.4513    (-0.0952005,0.075164)
+
+
+=================================================================
+# Get the unobserved/de-absorbed flux without the absorbtion flux:
+Model TBabs<1>*cflux<2>(bbodyrad<3> + bbodyrad<4>) Source No.: 1   Active/On
+
+4    2   cflux      lg10Flux   cgs      -10.5570     +/-  4.14197E-02
+12    2   cflux      lg10Flux   cgs      -10.6579     +/-  2.37867E-02  
+
+the error at 1, and 90% confidence level
+     4     -10.6006     -10.5185    (-0.0436614,0.0384572)
+     4      -10.632     -10.4961    (-0.075014,0.0608668)
+
+    12     -10.6819     -10.6347    (-0.0239721,0.023209)
+    12     -10.6978     -10.6201    (-0.0398843,0.0378455)
+
+
+
+
+=======================================
+#XMM OBSID 0872390501
+
+abubakar@abubakar-laptop:~/work/xmm/0872390501$ fkeyprint PNclean.fits date
+ 
+# FILE: PNclean.fits
+# KEYNAME: DATE
+ 
+# EXTENSION:    0
+DATE    = '2020-11-30T16:22:21.000' / creation date
+DATE-OBS= '2020-10-11T21:06:04' / Start Time (UTC) of exposure (this must be used  59133.87921296)
+DATE-END= '2020-10-12T03:40:03' / End Time (UTC) of exposure (59134.15281250)
+DATE_OBS= '2020-10-11T20:57:00.000' / Date observations were made (mjd=59133.87291667)
+DATE_END= '2020-10-12T03:43:56.000' / Date observations ended (59134.15550926)
+ 
+# EXTENSION:    1
+DATE-OBS= '2020-10-11T21:06:04' / Start Time (UTC) of exposure
+DATE-END= '2020-10-12T03:40:03' / End Time (UTC) of exposure
+DATE_OBS= '2020-10-11T20:57:00.000' / Date observations were made
+DATE_END= '2020-10-12T03:43:56.000' / Date observations ended
+ 
+# EXTENSION:    2
+DATE-OBS= '2020-10-11T21:06:04' / Start Time (UTC) of exposure
+DATE-END= '2020-10-12T03:40:03' / End Time (UTC) of exposure
+DATE_OBS= '2020-10-11T20:57:00.000' / Date observations were made
+DATE_END= '2020-10-12T03:43:56.000' / Date observations ended
+ 
+# EXTENSION:    3
+DATE-OBS= '2020-10-11T21:06:04' / Start Time (UTC) of exposure
+DATE-END= '2020-10-12T03:40:03' / End Time (UTC) of exposure
+DATE_OBS= '2020-10-11T20:57:00.000' / Date observations were made
+DATE_END= '2020-10-12T03:43:56.000' / Date observations ended
+ 
+# EXTENSION:    4
+DATE-OBS= '2020-10-11T21:06:04' / Start Time (UTC) of exposure
+DATE-END= '2020-10-12T03:40:03' / End Time (UTC) of exposure
+DATE_OBS= '2020-10-11T20:57:00.000' / Date observations were made
+DATE_END= '2020-10-12T03:43:56.000' / Date observations ended
+ 
+# EXTENSION:    5
+DATE-OBS= '2020-10-11T21:06:04' / Start Time (UTC) of exposure
+DATE-END= '2020-10-12T03:40:03' / End Time (UTC) of exposure
+DATE_OBS= '2020-10-11T20:57:00.000' / Date observations were made
+DATE_END= '2020-10-12T03:43:56.000' / Date observations ended
+ 
+# EXTENSION:    6
+DATE-OBS= '2020-10-11T21:06:04' / Start Time (UTC) of exposure
+DATE-END= '2020-10-12T03:40:03' / End Time (UTC) of exposure
+DATE_OBS= '2020-10-11T20:57:00.000' / Date observations were made
+DATE_END= '2020-10-12T03:43:56.000' / Date observations ended
+ 
+# EXTENSION:    7
+ 
+# EXTENSION:    8
+DATE-OBS= '2020-10-11T21:06:04' / Exposure Start Time
+DATE-END= '2020-10-12T03:40:03' / Exposure End Time
+DATE_OBS= '2020-10-11T20:57:00.000' / Date observations were made
+DATE_END= '2020-10-12T03:43:56.000' / Date observations ended
+ 
+
+Model cflux<1>*TBabs<2>(bbodyrad<3> + bbodyrad<4>) Source No.: 1   Active/On
+Model Model Component  Parameter  Unit     Value
+ par  comp
+   1    1   cflux      Emin       keV      0.300000     frozen
+   2    1   cflux      Emax       keV      10.0000      frozen
+   3    1   cflux      lg10Flux   cgs      -10.4000     +/-  1.68269E-03  
+   4    2   TBabs      nH         10^22    0.744543     +/-  7.64599E-03  
+   5    3   bbodyrad   kT         keV      0.468846     +/-  7.61911E-03  
+   6    3   bbodyrad   norm                29.9920      frozen
+   7    4   bbodyrad   kT         keV      1.14664      +/-  9.68564E-03  
+   8    4   bbodyrad   norm                2.01905      frozen
+________________________________________________________________________
+
+
+Fit statistic  : Chi-Squared                  156.20     using 140 bins.
+
+Test statistic : Chi-Squared                  156.20     using 140 bins.
+ Null hypothesis probability of 1.13e-01 with 136 degrees of freedom
+XSPEC12>error 1. 3
+ Parameter   Confidence Range (1)
+     3     -10.4017     -10.3983    (-0.00170248,0.00169023)
+XSPEC12>error 2.706 3
+ Parameter   Confidence Range (2.706)
+     3     -10.4028     -10.3972    (-0.00279893,0.00278199)
+============================================================================
+========================================================================
+Model TBabs<1>*cflux<2>(bbodyrad<3> + bbodyrad<4>) Source No.: 1   Active/On
+Model Model Component  Parameter  Unit     Value
+ par  comp
+   1    1   TBabs      nH         10^22    0.744545     +/-  7.64589E-03  
+   2    2   cflux      Emin       keV      0.300000     frozen
+   3    2   cflux      Emax       keV      10.0000      frozen
+   4    2   cflux      lg10Flux   cgs      -10.2834     +/-  1.86516E-03  
+   5    3   bbodyrad   kT         keV      0.468844     +/-  7.61845E-03  
+   6    3   bbodyrad   norm                29.9920      frozen
+   7    4   bbodyrad   kT         keV      1.14664      +/-  9.68595E-03  
+   8    4   bbodyrad   norm                2.01905      frozen
+________________________________________________________________________
+
+
+Fit statistic  : Chi-Squared                  156.20     using 140 bins.
+
+Test statistic : Chi-Squared                  156.20     using 140 bins.
+ Null hypothesis probability of 1.13e-01 with 136 degrees of freedom
+XSPEC12>error 1. 4
+ Parameter   Confidence Range (1)
+     4     -10.2853     -10.2816    (-0.00189131,0.00187388)
+XSPEC12>error 2.706 4
+ Parameter   Confidence Range (2.706)
+     4     -10.2866     -10.2804    (-0.00312168,0.00307398)
+=========================================================================================
+
+
+#40001
+DATE-OBS= '2020-10-29T04:35:55' / Start date of observations
+DATE-END= '2020-10-29T22:34:56' / End date of observations
+59151.19160880
+59151.94092593
+
+
+#40006
+DATE-OBS= '2020-11-13T01:34:21' / Start date of observations
+DATE-END= '2020-11-13T13:09:56' / End date of observations
+59166.06552083
+59166.54856481
+
+#71000
+DATE-OBS= '2020-10-10T14:51:07' / Start date of observations
+DATE-END= '2020-10-10T16:30:29' / End date of observations
+59132.61883102
+59132.68783565
+
+#71002
+DATE-OBS= '2020-10-15T01:15:03' / Start date of observations
+DATE-END= '2020-10-15T20:35:55' / End date of observations
+59137.05211806
+59137.85827546
+
+#71003
+DATE-OBS= '2020-10-16T10:35:46' / Start date of observations
+DATE-END= '2020-10-17T19:04:56' / End date of observations
+59138.44150463
+59139.79509259
+
+# MAke the plot!
+
+

@@ -1,0 +1,65 @@
+
+INSTRUCTIONS ASSUMING A LOCAL TIMING SOLUTION IS AVAILABLE
+
+1) Read the barycentered event file in xselect and filter it in phase using the filter phase command (for more details, see https://heasarc.gsfc.nasa.gov/docs/asca/abc/node8.html#SECTION00880000000000000000). It is important to know the spin period at the observation epoch and the reference epoch. Examples for using the command are:
+
+filter phase 59132 0.00012055239 0.25-0.55
+filter phase 59132 0.00012055239 "0.00-0.05,0.75-1.00"
+
+Extract curve binsize_t=0.01
+Save goodtime peak1.gti
+
+The first parameter is the reference epoch in MJD, the second parameter is the spin period in units of days and the third parameter is the phase range. Note that the phase range should be selected based on the pulse profile extracted using the same reference epoch and spin period value adopted for the "filter phase command". Let's assume we have selected the phase range corresponding to the pulse peak and let's save it as peak1.gti.
+
+Not sure if third column of the gti file has to be deleted (to be checked)
+
+
+2) Extract the high-level scientific products for both FPMs (better to use the latest version of the clock file available at the time of the analysis). Parameters need to be adjusted depending on the obs ID, the source position, the S/N as a function of energy range and the available counting statistics. 
+
+nuproducts indir=/Users/abubakribrahim/Desktop/observations/SGR1935/new1002 instrument=FPMA steminputs=nu90601331002 outdir=/Users/abubakribrahim/Desktop/observations/SGR1935/new1002/phase_analysis/pps stemout=Amax srcregionfile=/Users/abubakribrahim/Desktop/observations/SGR1935/new1002/srcA.reg bkgregionfile=/Users/abubakribrahim/Desktop/observations/SGR1935/new1002/bkgA.reg rungrppha=yes grpmincounts=20 grppibadlow=35 grppibadhigh=1935 barycorr=yes srcra_barycorr=274.500667 srcdec_barycorr=-16.131444 orbitfile=/Users/abubakribrahim/Desktop/observations/SGR1935/new1002/nu90601331002A.attorb clockfile=/Users/abubakribrahim/caldb/data/nustar/fpm/bcf/clock/nuCclock20100101v148.fits.gz usrgtifile=/Users/abubakribrahim/Desktop/observations/SGR1935/new1002/peak1.gti usrgtibarycorr=no binsize=0.01
+
+
+nuproducts indir=n90601331002 instrument=FPMB steminputs=nu90601331002 outdir=./pps stemout=B_hrmax srcregionfile=n90601331002/src.reg bkgregionfile=n90601331002/bg.reg rungrppha=yes grpmincounts=20 grppibadlow=35 grppibadhigh=1935 barycorr=yes srcra_barycorr=277.67352 srcdec_barycorr=-6.75470 orbitfile=n90601331002/nu90601331002B.attorb clockfile=n90601331002/nuCclock20100101v110.fits usrgtifile=n90601331002/peak1.gti usrgtibarycorr=no binsize=0.01
+
+
+---------------
+
+
+INSTRUCTIONS ASSUMING A PHASE-CONNECTED TIMING SOLUTION IS AVAILABLE
+
+1) use the fcalc ftools to add a PHASE column to the NON-barycentered source event file. Assuming that t0  is the one given in input to the SAS phasecalc tool, it is expressed in UTC and should be converted into NuSTAR MET system using heasarc tool. Check that the input and output times need to be in UTC units. Then, if f is the frequency value and fdot is the frequency derivative, we could enter the following mathematical expression into fcalc:
+
+(f*(TIME-t0)+0.5*fdot*(TIME-t0)**2) %1.0
+
+fcalc 1002Asrc_bary.evt 1002Asrc_phase.evt PHASE "(0.3075268206574549 *(TIME-403588227.000)+0.5*-5.248226316513*10**-12*(TIME-403588227.000)**2) % 1.0" 
+
+
+2) Generate a GTI file using the maketime command:
+
+maketime filsrc.evt peak1.gti "PHASE .GE.  0.25 .AND. PHASE .LE.  0.55" name=NAME value=VALUE compact=NO prefr=0.5 postfr=0.5 premax=4.0 postmax=4.0 time=TIME
+
+
+3) Extract the high-level scientific products for both FPMs (better to use the latest version of the clock file available at the time of the analysis). Parameters need to be adjusted depending on the obs ID, the source position, the S/N as a function of energy range and the available counting statistics. Note that in this case also the GTI file should be barycentered ("usrgtibarycorr=yes") as it was created starting from the NON-barycentered event file
+
+
+nuproducts indir=/Users/abubakribrahim/Desktop/observations/SGR1935/new1002 instrument=FPMA steminputs=nu90601331002 outdir=/Users/abubakribrahim/Desktop/observations/SGR1935/new1002/phase_analysis/pps stemout=Amax srcregionfile=/Users/abubakribrahim/Desktop/observations/SGR1935/new1002/srcA.reg bkgregionfile=/Users/abubakribrahim/Desktop/observations/SGR1935/new1002/bkgA.reg rungrppha=yes grpmincounts=20 grppibadlow=35 grppibadhigh=1935 barycorr=yes srcra_barycorr=274.500667 srcdec_barycorr=-16.131444 orbitfile=/Users/abubakribrahim/Desktop/observations/SGR1935/new1002/nu90601331002A.attorb clockfile=/Users/abubakribrahim/caldb/data/nustar/fpm/bcf/clock/nuCclock20100101v148.fits.gz usrgtifile=/Users/abubakribrahim/Desktop/observations/SGR1935/new1002/peak1.gti usrgtibarycorr=yes binsize=0.01
+
+
+nuproducts indir=n90601331002 instrument=FPMB steminputs=nu90601331002 outdir=./pps stemout=B_hrmax srcregionfile=n90601331002/src.reg bkgregionfile=n90601331002/bg.reg rungrppha=yes grpmincounts=20 grppibadlow=35 grppibadhigh=1935 barycorr=yes srcra_barycorr=277.67352 srcdec_barycorr=-6.75470 orbitfile=n90601331002/nu90601331002B.attorb clockfile=n90601331002/nuCclock20100101v110.fits usrgtifile=n90601331002/peak1.gti usrgtibarycorr=yes binsize=0.01
+
+
+--------
+
+
+ALTERNATIVE INSTRUCTIONS ASSUMING A PHASE-CONNECTED TIMING SOLUTION IS AVAILABLE (IN CASE THE PREVIOUS ONE DOES NOT WORK):
+
+We could try a combination of astropy and NuSTAR python tools to convert the epoch from MJD to MET (in TDB units). This requires the installation of the nustar-gen-utils (https://github.com/NuSTAR/nustar-gen-utils/tree/1a01620633a11d37d6c9ef46caa0a492fc2aa321) and the usage of the met_to_time function (see line 60 here: https://github.com/NuSTAR/nustar-gen-utils/blob/1a01620633a11d37d6c9ef46caa0a492fc2aa321/nustar_gen/info.py)
+
+ns = NuSTAR()
+time = Time('59871.320339421679', format='mjd', scale='tdb')
+met = ns.time_to_met(time)
+print(met)
+
+Starting from this met value, we can use this as the t0 for the expression to be used in fcalc. Then we proceed as above with the only difference of using usrgtibarycorr=no in nuproducts
+
+

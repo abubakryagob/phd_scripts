@@ -1,0 +1,79 @@
+#L’epoca di default in efold è la stessa che va utilizzata quando si aggiunge la colonna delle fasi al file eventi con phasecalc
+
+
+#costruire la phase column del file sorgente
+phasecalc tables=PNsrc_orbit.fits:EVENTS frequency=0.000139198218 epoch=2014-12-14T16:32:06.894
+
+phasecalc tables=PNbg_orbit.fits:EVENTS frequency=0.000139198218 epoch=2014-12-14T16:32:06.894
+
+
+#selezionare gli intervalli in fase
+tabgtigen table=90501PNsrc_0.3-10.fits:EVENTS expression='(PHASE in [0.0:0.02])' gtiset=90501PNgti_phase_0.0-0.02.ds timecolumn=TIME
+
+
+#filtrare in fase il file eventi della sorgente
+evselect table=90501PNsrc_0.3-10.fits:EVENTS withfilteredset=yes filteredset=90501PNsrc_phase_0.0-0.02.fits destruct=Y expression='#XMMEA_EP && gti(90501PNgti_phase_0.0-0.02.ds,TIME)' updateexposure=yes filterexposure=yes  keepfilteroutput=yes
+
+
+#estrarre lo spettro
+evselect table=90501PNsrc_phase_0.0-0.02.fits withspectrumset=yes spectrumset=90501PNsrc_phase_0.0-0.02_spec.fits energycolumn=PI spectralbinsize=5 withspecranges=yes specchannelmin=0 specchannelmax=20479 expression='(FLAG==0) && (PATTERN<=4) && (PI>150) && gti(90501PNgti_phase_0.0-0.02.ds,TIME)'
+ 
+
+#selezionare gli intervalli in fase di bg
+tabgtigen table=90501PNbg_0.3-10.fits:EVENTS expression='(PHASE in [0.0:0.02])' gtiset=90501PNgti_bg_phase_0.0-0.02.ds timecolumn=TIME
+
+
+#filtrare in fase il file eventi di bg
+evselect table=90501PNbg_0.3-10.fits:EVENTS withfilteredset=Y filteredset=90501PNbg_phase_0.0-0.02.fits destruct=Y expression='#XMMEA_EP && gti(90501PNgti_bg_phase_0.0-0.02.ds,TIME)' updateexposure=yes filterexposure=yes keepfilteroutput=yes
+
+
+#estrarre lo spettro di bg
+evselect table=90501PNbg_0.3-10.fits withspectrumset=yes spectrumset=90501PNbg_phase_0.0-0.02_spec.fits energycolumn=PI spectralbinsize=5 withspecranges=yes specchannelmin=0 specchannelmax=20479 expression='(FLAG==0) && (PATTERN<=4) && (PI>150) && gti(90501PNgti_bg_phase_0.0-0.02.ds,TIME)' 
+
+
+backscale spectrumset=90501PNsrc_phase_0.0-0.02_spec.fits badpixlocation=90501PN_bary.fits
+backscale spectrumset=90501PNbg_phase_0.0-0.02_spec.fits badpixlocation=90501PN_bary.fits
+
+
+#generare rmf e arf
+rmfgen spectrumset=90501PNsrc_phase_0.0-0.02_spec.fits rmfset=90501PNsrc_phase_0.0-0.02.rmf
+
+arfgen spectrumset=90501PNsrc_phase_0.0-0.02_spec.fits arfset=90501PNsrc_phase_0.0-0.02.arf withrmfset=yes rmfset=90501PNsrc_phase_0.0-0.02.rmf detmaptype=psf badpixlocation=90501PN_bary.fits
+
+
+#grouping degli spettri
+
+specgroup spectrumset=90501PNsrc_phase_0.0-0.02_spec.fits mincounts=1 oversample=3 setbad='0:0.3,10.0-100.0' units=KEV rmfset=90501PNsrc_phase_0.0-0.02.rmf arfset=90501PNsrc_phase_0.0-0.02.arf backgndset=90501PNbg_phase_0.0-0.02_spec.fits groupedset=90501PNsrc_phase_0.0-0.02_spec_grp1.fits
+
+
+specgroup spectrumset=90501PNsrc_phase_0.0-0.02_spec.fits mincounts=50 oversample=3 setbad='0:0.3,10.0-100.0' units=KEV rmfset=90501PNsrc_phase_0.0-0.02.rmf arfset=90501PNsrc_phase_0.0-0.02.arf backgndset=90501PNbg_phase_0.0-0.02_spec.fits groupedset=90501PNsrc_phase_0.0-0.02_spec_grp50.fits
+
+
+#fit degli spettri e salvataggio best-fitting parameters
+
+xspec
+data 1:1 90501PNsrc_phase_0.0-0.02_spec_grp50.fits
+setp ene
+abund wilm
+xsect vern
+query yes
+mo tbabs*(bbodyrad+bbodyrad)
+1.07,-1
+0.45
+50
+1.1
+1
+fit 10000000
+save all phase_0.0-0.02.xcm
+@get_result.xcm
+mv fluxunabs_3bb.dat phase_0.0-0.02.dat
+freeze 3 5
+addcomp 1 cflux
+0.3
+10
+-10
+fit 10000000
+save all phase_0.0-0.02_flux.xcm
+@get_flux.xcm
+mv fit_flux.dat phase_0.0-0.02_flux.dat	
+exit

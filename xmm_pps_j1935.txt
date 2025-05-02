@@ -1,0 +1,64 @@
+# 1- change the phase range xx:xx and change the name of produced files xx-xx 
+# 2- change the source name
+# 3- change the initial values for the period, freq and it's derivatve in case of new source
+# 4- build the phase column in the original PN event file (it must be barycentered)
+
+
+phasecalc tables=4001_EPICclean_pers_bary_phase.fits:EVENTS frequency=0.3075268206574549 frequencydot=-5.248226316513e-12 epoch=2022-10-16T03:49:14.816
+
+
+evselect table=4001_EPICclean_pers_bary_phase.fits withfilteredset=Y filteredset=4001_EPICclean_pers_bary_phase_source.fits destruct=Y keepfilteroutput=T expression='#XMMEA_EP && ((X,Y) IN circle(27435.375,27365.548,600.00004))' updateexposure=yes filterexposure=yes
+
+# if the phase was negative and it has to be between 0 and 1 fix it with:
+
+#fcalc 
+#Name of FITS file and [ext#][4001_EPICclean_pers_bary.fits] 4001_EPICclean_pers_bary_phase.fits
+#Name of output FITS file[4001_EPICclean_pers_bary_newphase.fits] 4001_EPICclean_pers_bary_phase_newphase.fits
+#Resultant column name[PHASE] 
+#Arithmetic expression[(PHASE+1)%1] 
+
+#get gti filter for the source in phase xx-xx interval
+tabgtigen table=4001_EPICclean_pers_bary_phase_source.fits:EVENTS expression='(PHASE in [0.5:1.0])' gtiset=4001PNgti_src_0.5-1.0.fits timecolumn=TIME
+
+#filter the src file in the phase intervals
+evselect table=4001_EPICclean_pers_bary_phase_source.fits:EVENTS withfilteredset=yes filteredset=4001_EPICclean_pers_bary_phase_source_0.5-1.0.fits destruct=Y expression='#XMMEA_EP && gti(4001PNgti_src_0.5-1.0.fits,TIME)' updateexposure=yes filterexposure=yes keepfilteroutput=yes
+
+
+#Other test you can do just to be 200%sure we are doing the correct thing, is to plot again the phase column with fv of the file 4001_EPICclean_pers_bary_phase_source_0.5-1.0.fits and see if the phases are within 0 and 0.5
+#Done and its correct!
+#extract the spectra
+evselect table=4001_EPICclean_pers_bary_phase_source_0.5-1.0.fits withspectrumset=yes spectrumset=4001_EPICclean_pers_bary_phase_source_0.5-1.0_spectra.fits energycolumn=PI spectralbinsize=5 withspecranges=yes specchannelmin=0 specchannelmax=20479 expression='(FLAG==0) && (PATTERN <=4) && (PI>150)'
+
+
+############## Same for the bkg ###########
+#We alrady phased the PN event file (which include both src and bkg) so no need to repeat this for the bkg
+
+evselect table=4001_EPICclean_pers_bary_phase.fits withfilteredset=Y filteredset=4001_EPICclean_pers_bary_phase_background.fits destruct=Y keepfilteroutput=T expression='#XMMEA_EP && ((X,Y) IN circle(27802.61,24583.041,1200.0001))' updateexposure=yes filterexposure=yes
+
+tabgtigen table=4001_EPICclean_pers_bary_phase_background.fits:EVENTS expression='(PHASE in [0.5:1.0])' gtiset=4001PNgti_bkg_0.5-1.0.fits timecolumn=TIME
+
+
+evselect table=4001_EPICclean_pers_bary_phase_background.fits:EVENTS withfilteredset=yes filteredset=4001_EPICclean_pers_bary_phase_background_0.5-1.0.fits destruct=Y expression='#XMMEA_EP && gti(4001PNgti_bkg_0.5-1.0.fits,TIME)' updateexposure=yes filterexposure=yes keepfilteroutput=yes
+
+
+evselect table=4001_EPICclean_pers_bary_phase_background_0.5-1.0.fits withspectrumset=yes spectrumset=4001_EPICclean_pers_bary_phase_background_0.5-1.0_spectra.fits energycolumn=PI spectralbinsize=5 withspecranges=yes specchannelmin=0 specchannelmax=20479 expression='(FLAG==0) && (PATTERN <=4) && (PI>150)'
+
+
+
+backscale spectrumset=4001_EPICclean_pers_bary_phase_source_0.5-1.0_spectra.fits badpixlocation=4001_EPICclean_pers_bary.fits
+
+backscale spectrumset=4001_EPICclean_pers_bary_phase_background_0.5-1.0_spectra.fits badpixlocation=4001_EPICclean_pers_bary.fits 
+
+
+rmfgen spectrumset=4001_EPICclean_pers_bary_phase_source_0.5-1.0_spectra.fits rmfset=4001PNsrc_phase_0.5-1.0.rmf
+
+arfgen spectrumset=4001_EPICclean_pers_bary_phase_source_0.5-1.0_spectra.fits arfset=4001PNsrc_phase_0.5-1.0.arf withrmfset=yes rmfset=4001PNsrc_phase_0.5-1.0.rmf badpixlocation=4001_EPICclean_pers_bary.fits detmaptype=psf
+
+
+#Beofr grouping you may update the exposure, in case it's required, check that the resulted exposure is the correct by deviding the full exposure by the nuber of the intervals
+
+cp 4001_EPICclean_pers_bary_phase_source_0.5-1.0_spectra.fits 4001_EPICclean_pers_bary_phase_source_0.5-1.0_spectra_updated-sxposure.fits 
+fparkey 2.08E+04 4001_EPICclean_pers_bary_phase_source_0.5-1.0_spectra_updated-sxposure.fits exposure add=no
+
+
+specgroup spectrumset=4001_EPICclean_pers_bary_phase_source_0.5-1.0_spectra_updated-sxposure.fits mincounts=50 oversample=3 setbad='0:0.3,10.0-100.0' units=KEV rmfset=4001PNsrc_phase_0.5-1.0.rmf arfset=4001PNsrc_phase_0.5-1.0.arf backgndset=4001_EPICclean_pers_bary_phase_background_0.5-1.0_spectra.fits groupedset=4001PN_phase_0.5-1.0_grp50_updated-sxposure.fits

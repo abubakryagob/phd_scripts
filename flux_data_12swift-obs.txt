@@ -1,0 +1,290 @@
+
+========================================================================
+Model TBabs<1>*cflux<2>(bbodyrad<3> + powerlaw<4>) Source No.: 1   Active/On
+Model Model Component  Parameter  Unit     Value
+ par  comp
+                           Data group: 1
+   1    1   TBabs      nH         10^22    1.96980      +/-  0.100890     
+   2    2   cflux      Emin       keV      0.800000     frozen
+   3    2   cflux      Emax       keV      10.0000      frozen
+   4    2   cflux      lg10Flux   cgs      -10.5783     +/-  2.95995E-02  
+   5    3   bbodyrad   kT         keV      1.18351E-02  +/-  -1.00000     
+   6    3   bbodyrad   norm                2.67262E-04  frozen
+   7    4   powerlaw   PhoIndex            2.09302      +/-  0.150539     
+   8    4   powerlaw   norm                3.89177E-03  frozen
+                           Data group: 2
+   9    1   TBabs      nH         10^22    1.96980      = p1
+  10    2   cflux      Emin       keV      0.800000     = p2
+  11    2   cflux      Emax       keV      10.0000      = p3
+  12    2   cflux      lg10Flux   cgs      -10.6471     +/-  3.27307E-02  
+  13    3   bbodyrad   kT         keV      6.67203E-03  +/-  -1.00000     
+  14    3   bbodyrad   norm                2.39588E-05  frozen
+  15    4   powerlaw   PhoIndex            2.21353      +/-  0.164555     
+  16    4   powerlaw   norm                3.90107E-03  frozen
+                           Data group: 3
+  17    1   TBabs      nH         10^22    1.96980      = p1
+  18    2   cflux      Emin       keV      0.800000     = p2
+  19    2   cflux      Emax       keV      10.0000      = p3
+  20    2   cflux      lg10Flux   cgs      -10.2522     +/-  2.41131E-02  
+  21    3   bbodyrad   kT         keV      7.26035E-03  +/-  -1.00000     
+  22    3   bbodyrad   norm                0.596870     frozen
+  23    4   powerlaw   PhoIndex            1.84582      +/-  0.122909     
+  24    4   powerlaw   norm                5.98700E-03  frozen
+                           Data group: 4
+  25    1   TBabs      nH         10^22    1.96980      = p1
+  26    2   cflux      Emin       keV      0.800000     = p2
+  27    2   cflux      Emax       keV      10.0000      = p3
+  28    2   cflux      lg10Flux   cgs      -10.2702     +/-  1.88732E-02  
+  29    3   bbodyrad   kT         keV      0.754825     +/-  0.105918     
+  30    3   bbodyrad   norm                0.975577     frozen
+  31    4   powerlaw   PhoIndex            1.93076      +/-  7.76453E-02  
+  32    4   powerlaw   norm                5.93833E-03  frozen
+                           Data group: 5
+  33    1   TBabs      nH         10^22    1.96980      = p1
+  34    2   cflux      Emin       keV      0.800000     = p2
+  35    2   cflux      Emax       keV      10.0000      = p3
+  36    2   cflux      lg10Flux   cgs      -10.4473     +/-  3.71614E-02  
+  37    3   bbodyrad   kT         keV      0.631117     +/-  0.271479     
+  38    3   bbodyrad   norm                0.832822     frozen
+  39    4   powerlaw   PhoIndex            1.96347      +/-  0.146742     
+  40    4   powerlaw   norm                4.17301E-03  frozen
+                           Data group: 6
+  41    1   TBabs      nH         10^22    1.96980      = p1
+  42    2   cflux      Emin       keV      0.800000     = p2
+  43    2   cflux      Emax       keV      10.0000      = p3
+  44    2   cflux      lg10Flux   cgs      -10.4637     +/-  2.06298      
+  45    3   bbodyrad   kT         keV      1.82444      +/-  -1.00000     
+  46    3   bbodyrad   norm                1.86125E+07  +/-  -1.00000     
+  47    4   powerlaw   PhoIndex            2.02790      +/-  0.134657     
+  48    4   powerlaw   norm                3.26587E+19  +/-  6.15148E+37  
+                           Data group: 7
+  49    1   TBabs      nH         10^22    1.96980      = p1
+  50    2   cflux      Emin       keV      0.800000     = p2
+  51    2   cflux      Emax       keV      10.0000      = p3
+  52    2   cflux      lg10Flux   cgs      -10.5129     +/-  2.73744E-02  
+  53    3   bbodyrad   kT         keV      0.947611     +/-  0.215523     
+  54    3   bbodyrad   norm                0.448800     frozen
+  55    4   powerlaw   PhoIndex            2.28812      +/-  0.481257     
+  56    4   powerlaw   norm                4.22537E-03  frozen
+                           Data group: 8
+  57    1   TBabs      nH         10^22    1.96980      = p1
+  58    2   cflux      Emin       keV      0.800000     = p2
+  59    2   cflux      Emax       keV      10.0000      = p3
+  60    2   cflux      lg10Flux   cgs      -10.5571     +/-  6.38352E-02  
+  61    3   bbodyrad   kT         keV      0.891426     +/-  0.442932     
+  62    3   bbodyrad   norm                0.696070     frozen
+  63    4   powerlaw   PhoIndex            2.39553      +/-  1.69670      
+  64    4   powerlaw   norm                4.05387E-03  frozen
+                           Data group: 9
+  65    1   TBabs      nH         10^22    1.96980      = p1
+  66    2   cflux      Emin       keV      0.800000     = p2
+  67    2   cflux      Emax       keV      10.0000      = p3
+  68    2   cflux      lg10Flux   cgs      -10.5662     +/-  2.71054E-02  
+  69    3   bbodyrad   kT         keV      2.27929E-03  +/-  -1.00000     
+  70    3   bbodyrad   norm                0.491300     frozen
+  71    4   powerlaw   PhoIndex            2.13314      +/-  0.134499     
+  72    4   powerlaw   norm                4.23071E-03  frozen
+                           Data group: 10
+  73    1   TBabs      nH         10^22    1.96980      = p1
+  74    2   cflux      Emin       keV      0.800000     = p2
+  75    2   cflux      Emax       keV      10.0000      = p3
+  76    2   cflux      lg10Flux   cgs      -10.6627     +/-  2.75714E-02  
+  77    3   bbodyrad   kT         keV      2.08449E-03  +/-  -1.00000     
+  78    3   bbodyrad   norm                9.77264E+04  frozen
+  79    4   powerlaw   PhoIndex            2.04820      +/-  0.137732     
+  80    4   powerlaw   norm                3.44763E-03  frozen
+                           Data group: 11
+  81    1   TBabs      nH         10^22    1.96980      = p1
+  82    2   cflux      Emin       keV      0.800000     = p2
+  83    2   cflux      Emax       keV      10.0000      = p3
+  84    2   cflux      lg10Flux   cgs      -10.4212     +/-  2.14408E-02  
+  85    3   bbodyrad   kT         keV      5.01697E-03  +/-  -1.00000     
+  86    3   bbodyrad   norm                3.26135E-02  frozen
+  87    4   powerlaw   PhoIndex            2.00963      +/-  0.114158     
+  88    4   powerlaw   norm                5.59545E-03  frozen
+                           Data group: 12
+  89    1   TBabs      nH         10^22    1.96980      = p1
+  90    2   cflux      Emin       keV      0.800000     = p2
+  91    2   cflux      Emax       keV      10.0000      = p3
+  92    2   cflux      lg10Flux   cgs      -10.4472     +/-  3.37393E-02  
+  93    3   bbodyrad   kT         keV      0.895203     +/-  0.437111     
+  94    3   bbodyrad   norm                0.333669     frozen
+  95    4   powerlaw   PhoIndex            2.09521      +/-  0.313224     
+  96    4   powerlaw   norm                5.21718E-03  frozen
+________________________________________________________________________
+
+
+Fit statistic  : Chi-Squared                   13.22     using 61 bins.
+                 Chi-Squared                   14.06     using 51 bins.
+                 Chi-Squared                   34.88     using 36 bins.
+                 Chi-Squared                   54.72     using 93 bins.
+                 Chi-Squared                   11.08     using 69 bins.
+                 Chi-Squared                   19.29     using 74 bins.
+                 Chi-Squared                   13.00     using 90 bins.
+                 Chi-Squared                    2.64     using 20 bins.
+                 Chi-Squared                   16.62     using 75 bins.
+                 Chi-Squared                   15.34     using 72 bins.
+                 Chi-Squared                   19.73     using 27 bins.
+                 Chi-Squared                   25.75     using 28 bins.
+Total fit statistic                           240.32     with 657 d.o.f.
+
+Test statistic : Chi-Squared                  240.32     using 696 bins.
+ Null hypothesis probability of 1.00e+00 with 657 degrees of freedom
+XSPEC12>
+
+#====================================================================
+-10.5783	-0.0307741,0.0295935	sw00013840001
+-10.6471    -0.0340355,0.0326565	sw00013840006
+-10.2522	-0.024977,0.0239563	sw00999571000
+-10.2702	-0.0198748,0.0207494	sw00999571001
+-10.4473	-0.0409003,0.035683	sw00999571002
+-10.4637	-0.0269952,0.0248542	sw00999571003
+-10.5129	-0.0136872,0.0298964	sw00999571004
+-10.5571	-0.0792744,0.0753437	sw00999571005
+-10.5662	-0.0282092,0.0272706	sw00013840002
+-10.6627	-0.0287821,0.0275741	sw00013840005
+-10.4212	-0.0223108,0.021719	sw01004219000
+-10.4472	-0.0251703,0.0257568	sw01005428000
+
+
+
+
+
+============================================================================
+Obsorbed/absorbed flux
+========================================================================
+Model cflux<1>*TBabs<2>(bbodyrad<3> + powerlaw<4>) Source No.: 1   Active/On
+Model Model Component  Parameter  Unit     Value
+ par  comp
+                           Data group: 1
+   1    1   cflux      Emin       keV      0.800000     frozen
+   2    1   cflux      Emax       keV      10.0000      frozen
+   3    1   cflux      lg10Flux   cgs      -10.7824     +/-  4.08334E-02  
+   4    2   TBabs      nH         10^22    1.81028      +/-  0.117959     
+   5    3   bbodyrad   kT         keV      1.18351E-02  +/-  -1.00000     
+   6    3   bbodyrad   norm                2.72050E-04  frozen
+   7    4   powerlaw   PhoIndex            2.00261      +/-  0.152617     
+   8    4   powerlaw   norm                6.29073E-03  frozen
+                           Data group: 2
+   9    1   cflux      Emin       keV      0.800000     = p1
+  10    1   cflux      Emax       keV      10.0000      = p2
+  11    1   cflux      lg10Flux   cgs      -10.8745     +/-  4.42185E-02  
+  12    2   TBabs      nH         10^22    1.81028      = p4
+  13    3   bbodyrad   kT         keV      6.67203E-03  +/-  -1.00000     
+  14    3   bbodyrad   norm                2.43880E-05  frozen
+  15    4   powerlaw   PhoIndex            2.12836      +/-  0.165433     
+  16    4   powerlaw   norm                6.05993E-03  frozen
+                           Data group: 3
+  17    1   cflux      Emin       keV      0.800000     = p1
+  18    1   cflux      Emax       keV      10.0000      = p2
+  19    1   cflux      lg10Flux   cgs      -10.4608     +/-  3.24094E-02  
+  20    2   TBabs      nH         10^22    1.81028      = p4
+  21    3   bbodyrad   kT         keV      1.32036      +/-  0.130087     
+  22    3   bbodyrad   norm                0.637960     frozen
+  23    4   powerlaw   PhoIndex            2.39270      +/-  0.654733     
+  24    4   powerlaw   norm                1.14448E-02  frozen
+                           Data group: 4
+  25    1   cflux      Emin       keV      0.800000     = p1
+  26    1   cflux      Emax       keV      10.0000      = p2
+  27    1   cflux      lg10Flux   cgs      -10.4517     +/-  1.78845E-02  
+  28    2   TBabs      nH         10^22    1.81028      = p4
+  29    3   bbodyrad   kT         keV      0.757719     +/-  8.53058E-02  
+  30    3   bbodyrad   norm                2.34912      frozen
+  31    4   powerlaw   PhoIndex            1.83022      +/-  8.00724E-02  
+  32    4   powerlaw   norm                8.87073E-03  frozen
+                           Data group: 5
+  33    1   cflux      Emin       keV      0.800000     = p1
+  34    1   cflux      Emax       keV      10.0000      = p2
+  35    1   cflux      lg10Flux   cgs      -10.6368     +/-  4.51399E-02  
+  36    2   TBabs      nH         10^22    1.81028      = p4
+  37    3   bbodyrad   kT         keV      0.647000     +/-  0.182194     
+  38    3   bbodyrad   norm                2.24657      frozen
+  39    4   powerlaw   PhoIndex            1.84695      +/-  0.151335     
+  40    4   powerlaw   norm                6.27712E-03  frozen
+                           Data group: 6
+  41    1   cflux      Emin       keV      0.800000     = p1
+  42    1   cflux      Emax       keV      10.0000      = p2
+  43    1   cflux      lg10Flux   cgs      -10.6847     +/-  5.29441E-02  
+  44    2   TBabs      nH         10^22    1.81028      = p4
+  45    3   bbodyrad   kT         keV      0.775550     +/-  0.396222     
+  46    3   bbodyrad   norm                5.49786      +/-  1.16175E+08  
+  47    4   powerlaw   PhoIndex            1.97516      +/-  0.399411     
+  48    4   powerlaw   norm                2.29454E-02  +/-  4.83157E+05  
+                           Data group: 7
+  49    1   cflux      Emin       keV      0.800000     = p1
+  50    1   cflux      Emax       keV      10.0000      = p2
+  51    1   cflux      lg10Flux   cgs      -10.7241     +/-  4.38484E-02  
+  52    2   TBabs      nH         10^22    1.81028      = p4
+  53    3   bbodyrad   kT         keV      0.845678     +/-  0.146861     
+  54    3   bbodyrad   norm                1.36312      frozen
+  55    4   powerlaw   PhoIndex            2.10353      +/-  0.305955     
+  56    4   powerlaw   norm                5.94086E-03  frozen
+                           Data group: 8
+  57    1   cflux      Emin       keV      0.800000     = p1
+  58    1   cflux      Emax       keV      10.0000      = p2
+  59    1   cflux      lg10Flux   cgs      -10.7761     +/-  0.125437     
+  60    2   TBabs      nH         10^22    1.81028      = p4
+  61    3   bbodyrad   kT         keV      0.797564     +/-  0.288832     
+  62    3   bbodyrad   norm                1.97861      frozen
+  63    4   powerlaw   PhoIndex            2.15412      +/-  0.951456     
+  64    4   powerlaw   norm                5.09089E-03  frozen
+                           Data group: 9
+  65    1   cflux      Emin       keV      0.800000     = p1
+  66    1   cflux      Emax       keV      10.0000      = p2
+  67    1   cflux      lg10Flux   cgs      -10.7955     +/-  4.59614E-02  
+  68    2   TBabs      nH         10^22    1.81028      = p4
+  69    3   bbodyrad   kT         keV      0.710615     +/-  0.205265     
+  70    3   bbodyrad   norm                1.18760      frozen
+  71    4   powerlaw   PhoIndex            2.04752      +/-  0.190183     
+  72    4   powerlaw   norm                5.66083E-03  frozen
+                           Data group: 10
+  73    1   cflux      Emin       keV      0.800000     = p1
+  74    1   cflux      Emax       keV      10.0000      = p2
+  75    1   cflux      lg10Flux   cgs      -10.8548     +/-  3.72395E-02  
+  76    2   TBabs      nH         10^22    1.81028      = p4
+  77    3   bbodyrad   kT         keV      5.55910E-02  +/-  4.02503E-03  
+  78    3   bbodyrad   norm                1.55487E+08  frozen
+  79    4   powerlaw   PhoIndex            1.93534      +/-  0.140810     
+  80    4   powerlaw   norm                4.81080E-03  frozen
+                           Data group: 11
+  81    1   cflux      Emin       keV      0.800000     = p1
+  82    1   cflux      Emax       keV      10.0000      = p2
+  83    1   cflux      lg10Flux   cgs      -10.5907     +/-  3.33067E-02  
+  84    2   TBabs      nH         10^22    1.81028      = p4
+  85    3   bbodyrad   kT         keV      0.501644     +/-  6.57812E-02  
+  86    3   bbodyrad   norm                15.2222      frozen
+  87    4   powerlaw   PhoIndex            1.38621      +/-  0.164186     
+  88    4   powerlaw   norm                3.16878E-03  frozen
+                           Data group: 12
+  89    1   cflux      Emin       keV      0.800000     = p1
+  90    1   cflux      Emax       keV      10.0000      = p2
+  91    1   cflux      lg10Flux   cgs      -10.6437     +/-  3.47281E-02  
+  92    2   TBabs      nH         10^22    1.81028      = p4
+  93    3   bbodyrad   kT         keV      0.638866     +/-  8.04088E-02  
+  94    3   bbodyrad   norm                4.82450      frozen
+  95    4   powerlaw   PhoIndex            1.76125      +/-  0.123649     
+  96    4   powerlaw   norm                4.75266E-03  frozen
+________________________________________________________________________
+
+
+Fit statistic  : Chi-Squared                   13.23     using 61 bins.
+                 Chi-Squared                   13.84     using 51 bins.
+                 Chi-Squared                   33.75     using 36 bins.
+                 Chi-Squared                   55.13     using 93 bins.
+                 Chi-Squared                   10.98     using 69 bins.
+                 Chi-Squared                   17.98     using 74 bins.
+                 Chi-Squared                   12.67     using 90 bins.
+                 Chi-Squared                    2.60     using 20 bins.
+                 Chi-Squared                   15.63     using 75 bins.
+                 Chi-Squared                   14.58     using 72 bins.
+                 Chi-Squared                   18.12     using 27 bins.
+                 Chi-Squared                   24.12     using 28 bins.
+Total fit statistic                           232.62     with 657 d.o.f.
+
+Test statistic : Chi-Squared                  232.62     using 696 bins.
+ Null hypothesis probability of 1.00e+00 with 657 degrees of freedom
+XSPEC12>
+
+
+
+
