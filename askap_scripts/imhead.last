@@ -1,0 +1,6 @@
+imagename = '/Users/abubakribrahim/Desktop/observations/ASKAP/ZTFJ1901_new_data/RACS/new_racs-data/scienceData.RACS_1856+12.SB38697.RACS_1856+12.beam07/scienceData.RACS_1856+12.SB38697.RACS_1856+12.beam07_averaged_cal.leakage.Dirty_Fixed-position_PhasedC_4000_1.2arcsec.image'
+mode      = 'summary'
+hdkey     = ''
+hdvalue   = ''
+verbose   = False
+#imhead( imagename='/Users/abubakribrahim/Desktop/observations/ASKAP/ZTFJ1901_new_data/RACS/new_racs-data/scienceData.RACS_1856+12.SB38697.RACS_1856+12.beam07/scienceData.RACS_1856+12.SB38697.RACS_1856+12.beam07_averaged_cal.leakage.Dirty_Fixed-position_PhasedC_4000_1.2arcsec.image',mode='summary',hdkey='',hdvalue='',verbose=False )

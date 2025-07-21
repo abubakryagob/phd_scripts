@@ -1,0 +1,95 @@
+2025-07-17 19:19:56	INFO	::casa	
+2025-07-17 19:19:57	INFO	::casa	Python version 3.8.10
+2025-07-17 19:19:57	INFO	::casa	CASA Version PIPELINE 6.5.4.9
+2025-07-17 19:19:57	INFO	::casa	
+2025-07-17 19:19:57	INFO	::casa	Found an existing telemetry logfile: /Users/abubakribrahim/.casa/casastats-6.5.4.9-1b63d532e49a21822a-20250717-182112.log
+2025-07-17 19:19:57	INFO	::casa	Telemetry log file: /Users/abubakribrahim/.casa/casastats-6.5.4.9-1b63d532e49a21822a-20250717-182112.log
+2025-07-17 19:19:57	INFO	::casa	Checking telemetry submission interval
+2025-07-17 19:19:57	INFO	::casa	Telemetry submit interval not reached. Not submitting data.
+2025-07-17 19:19:57	INFO	::casa	Next telemetry data submission in: 6 days, 23:01:15.279797
+2025-07-17 19:19:57	INFO	::casa	Using configuration file ~/.casa/config.py
+2025-07-17 19:19:57	INFO	::casa	
+2025-07-17 19:19:57	INFO	::casa	Checking Measures tables in data repository sub-directory /Applications/CASA.app/Contents/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/casadata/__data__/geodetic
+2025-07-17 19:19:57	INFO	::casa	  IERSeop2000 (version date, last date in table (UTC)): 2023/07/28/15:00, 2023/06/28/00:00:00
+2025-07-17 19:19:57	INFO	::casa	  IERSeop97 (version date, last date in table (UTC)): 2023/07/28/15:00, 2023/06/28/00:00:00
+2025-07-17 19:19:57	INFO	::casa	  IERSpredict (version date, last date in table (UTC)): 2023/07/30/15:00, 2023/10/28/00:00:00
+2025-07-17 19:19:57	INFO	::casa	  TAI_UTC (version date, last date in table (UTC)): 2023/07/09/15:00, 2017/01/01/00:00:00
+2025-07-17 19:19:57	INFO	imhead::::casa	##########################################
+2025-07-17 19:19:57	INFO	imhead::::casa	##### Begin Task: imhead             #####
+2025-07-17 19:19:57	INFO	imhead::::casa	imhead( imagename='/Users/abubakribrahim/Desktop/observations/ASKAP/ZTFJ1901_new_data/RACS/new_racs-data/scienceData.RACS_1856+12.SB38697.RACS_1856+12.beam07/scienceData.RACS_1856+12.SB38697.RACS_1856+12.beam07_averaged_cal.leakage.Dirty_Fixed-position_PhasedC_4000_1.2arcsec.image', mode='summary', hdkey='', hdvalue='', verbose=False )
+2025-07-17 19:19:57	INFO	ImageMetaData::summary	
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	Image name       : scienceData.RACS_1856+12.SB38697.RACS_1856+12.beam07_averaged_cal.leakage.Dirty_Fixed-position_PhasedC_4000_1.2arcsec.image
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	Object name      : RACS_1856+12
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	Image type       : PagedImage
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	Image quantity   : Intensity
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	Pixel mask(s)    : mask0
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	Region(s)        : None
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	Image units      : Jy/beam
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	Restoring Beam   : 36.3522 arcsec, 24.3614 arcsec, 12.8482 deg
+2025-07-17 19:19:57	INFO	ImageMetaData::summary	
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	Direction reference : J2000
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	Spectral  reference : LSRK
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	Velocity  type      : RADIO
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	Rest frequency      : 8.87366e+08 Hz
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	Pointing center     :  19:01:32.900000  +14.58.08.700000
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	Telescope           : ASKAP
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	Observer            : 
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	Date observation    : 2022/03/29/21:53:21.592703
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	Telescope position: [-2.55827e+06m, 5.09567e+06m, -2.84902e+06m] (ITRF)
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	Axis Coord Type      Name             Proj Shape Tile   Coord value at pixel        Coord incr Units
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	---------------------------------------------------------------------------------------------------- 
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	0    0     Direction Right Ascension   SIN  4000  200  19:01:32.900  2000.00     -1.200000e+00 arcsec
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	1    0     Direction Declination       SIN  4000  160 +14.58.08.700  2000.00      1.200000e+00 arcsec
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	2    1     Stokes    Stokes                    1    1             I
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	3    2     Spectral  Frequency                 1    1  887365587.38     0.00 2.87959458409e+08 Hz
+2025-07-17 19:19:57	INFO	ImageMetaData::summary+	                     Velocity                                     0     0.00     -9.728580e+04 km/s
+2025-07-17 19:19:57	INFO	imhead::::casa	Task imhead complete. Start time: 2025-07-17 21:19:57.266821 End time: 2025-07-17 21:19:57.302872
+2025-07-17 19:19:57	INFO	imhead::::casa	##### End Task: imhead               #####
+2025-07-17 19:19:57	INFO	imhead::::casa	##########################################
+2025-07-17 19:19:57	INFO	imstat::::casa	##########################################
+2025-07-17 19:19:57	INFO	imstat::::casa	##### Begin Task: imstat             #####
+2025-07-17 19:19:57	INFO	imstat::::casa	imstat( imagename='/Users/abubakribrahim/Desktop/observations/ASKAP/ZTFJ1901_new_data/RACS/new_racs-data/scienceData.RACS_1856+12.SB38697.RACS_1856+12.beam07/scienceData.RACS_1856+12.SB38697.RACS_1856+12.beam07_averaged_cal.leakage.Dirty_Fixed-position_PhasedC_4000_1.2arcsec.image', axes=[], region='', box='', chans='', stokes='', listit=True, verbose=True, mask='', stretch=False, logfile='', append=True, algorithm='classic', fence=-1.0, center='mean', lside=True, zscore=-1.0, maxiter=-1, clmethod='auto', niter=3 )
+2025-07-17 19:19:57	INFO	imstat::CasacRegionManager::fromBCS	No directional region specified. Using full positional plane.
+2025-07-17 19:19:57	INFO	imstat::CasacRegionManager::fromBCS	Using all spectral channels.
+2025-07-17 19:19:57	INFO	imstat::CasacRegionManager::fromBCS	Using polarizations ALL
+2025-07-17 19:19:57	INFO	imstat::image::statistics 	Determining stats for image scienceData.RACS_1856+12.SB38697.RACS_1856+12.beam07_averaged_cal.leakage.Dirty_Fixed-position_PhasedC_4000_1.2arcsec.image
+2025-07-17 19:19:57	INFO	imstat::ImageRegion::fromRecord	Selected bounding box : 
+2025-07-17 19:19:57	INFO	imstat::ImageRegion::fromRecord+	    [0, 0, 0, 0] to [3999, 3999, 0, 0]  (19:04:18.021, +14.18.04.924, I, 887365587.38Hz to 18:58:46.832, +15.38.03.812, I, 887365587.38Hz)
+2025-07-17 19:19:57	INFO	imstat::ImageStatsCalculator::_logStartup	Statistics calculated using Classic algorithm
+2025-07-17 19:19:57	INFO	imstat::ImageStatsCalculator::_logStartup	Regions --- 
+2025-07-17 19:19:57	INFO	imstat::ImageStatsCalculator::_logStartup	         -- bottom-left corner (pixel) [blc]:  [0, 0, 0, 0]
+2025-07-17 19:19:57	INFO	imstat::ImageStatsCalculator::_logStartup	         -- top-right corner (pixel) [trc]:    [3999, 3999, 0, 0]
+2025-07-17 19:19:57	INFO	imstat::ImageStatsCalculator::_logStartup	         -- bottom-left corner (world) [blcf]: 19:04:18.021, +14.18.04.924, I, 887365587.38Hz
+2025-07-17 19:19:57	INFO	imstat::ImageStatsCalculator::_logStartup	         -- top-right corner (world) [trcf]:   18:58:46.832, +15.38.03.812, I, 887365587.38Hz
+2025-07-17 19:19:58	INFO	imstat::::	Values --- 
+2025-07-17 19:19:58	INFO	imstat::::	         -- flux density [flux]:                    0.165097 Jy
+2025-07-17 19:19:58	INFO	imstat::::	         -- number of points [npts]:                1.08574e+07
+2025-07-17 19:19:58	INFO	imstat::::	         -- maximum value [max]:                    0.126119 Jy/beam
+2025-07-17 19:19:58	INFO	imstat::::	         -- minimum value [min]:                    -0.0128909 Jy/beam
+2025-07-17 19:19:58	INFO	imstat::::	         -- position of max value (pixel) [maxpos]: [1428, 258, 0, 0]
+2025-07-17 19:19:58	INFO	imstat::::	         -- position of min value (pixel) [minpos]: [2174, 20, 0, 0]
+2025-07-17 19:19:58	INFO	imstat::::	         -- position of max value (world) [maxposf]: 19:02:20.142, +14.23.17.960, I, 887365587.38Hz
+2025-07-17 19:19:58	INFO	imstat::::	         -- position of min value (world) [minposf]: 19:01:18.534, +14.18.32.619, I, 887365587.38Hz
+2025-07-17 19:19:58	INFO	imstat::::	         -- Sum of pixel values [sum]:               115.047 Jy/beam
+2025-07-17 19:19:58	INFO	imstat::::	         -- Sum of squared pixel values [sumsq]:     172.349 Jy/beam.Jy/beam
+2025-07-17 19:19:58	INFO	imstat::::	Statistics --- 
+2025-07-17 19:19:58	INFO	imstat::::	        -- Mean of the pixel values [mean]:         1.05961e-05 Jy/beam
+2025-07-17 19:19:58	INFO	imstat::::	        -- Variance of the pixel values :           1.58737e-05 Jy/beam
+2025-07-17 19:19:58	INFO	imstat::::	        -- Standard deviation of the Mean [sigma]:  0.00398418 Jy/beam
+2025-07-17 19:19:58	INFO	imstat::::	        -- Root mean square [rms]:                  0.0039842 Jy/beam
+2025-07-17 19:19:58	INFO	imstat::::	        -- Median of the pixel values [median]:     -9.35306e-06 Jy/beam
+2025-07-17 19:19:58	INFO	imstat::::	        -- Median of the deviations [medabsdevmed]: 0.00276804 Jy/beam
+2025-07-17 19:19:58	INFO	imstat::::	        -- IQR [quartile]:                          0.00553631 Jy/beam
+2025-07-17 19:19:58	INFO	imstat::::	        -- First quartile [q1]:                     -0.00284233 Jy/beam
+2025-07-17 19:19:58	INFO	imstat::::	        -- Third quartile [q3]:                     0.00269397 Jy/beam
+2025-07-17 19:19:58	INFO	imstat::ImageStatsCalculator::statistics	Sum column unit = Jy/beam
+2025-07-17 19:19:58	INFO	imstat::ImageStatsCalculator::statistics+	Mean column unit = Jy/beam
+2025-07-17 19:19:58	INFO	imstat::ImageStatsCalculator::statistics+	Std_dev column unit = Jy/beam
+2025-07-17 19:19:58	INFO	imstat::ImageStatsCalculator::statistics+	Minimum column unit = Jy/beam
+2025-07-17 19:19:58	INFO	imstat::ImageStatsCalculator::statistics+	Maximum column unit = Jy/beam
+2025-07-17 19:19:58	INFO	imstat::ImageStatsCalculator::statistics	Npts          Sum           Mean          Rms           Std_dev       Minimum       Maximum     
+2025-07-17 19:19:58	INFO	imstat::ImageStatsCalculator::statistics	 1.085745e+07  1.150466e+02  1.059610e-05  3.984198e-03  3.984184e-03 -1.289089e-02  1.261193e-01
+2025-07-17 19:19:58	INFO	imstat::::casa	Task imstat complete. Start time: 2025-07-17 21:19:57.318279 End time: 2025-07-17 21:19:58.016293
+2025-07-17 19:19:58	INFO	imstat::::casa	##### End Task: imstat               #####
+2025-07-17 19:19:58	INFO	imstat::::casa	##########################################
