@@ -8,6 +8,7 @@ REGION_FILE="/Users/abubakribrahim/Desktop/observations/ASKAP/ZTFJ1901_new_data/
 COLOR_MAP="heat"
 SCALE="minmax linear"
 ZOOM="0.5"
+SPECIFIC_FILES=()  # Empty array for specific FITS files to load
 
 # Help function
 show_help() {
@@ -17,7 +18,10 @@ show_help() {
     echo "  -c, --colormap MAP   Color map to use (default: $COLOR_MAP)"
     echo "  -s, --scale SCALE    Scale method to use (default: $SCALE)"
     echo "  -z, --zoom LEVEL     Zoom level (default: $ZOOM)"
+    echo "  -f, --file FILE      Specific FITS file to load (can be used multiple times)"
     echo "  -h, --help           Show this help message"
+    echo ""
+    echo "If no specific FITS files are provided with -f, all FITS files in the current directory will be loaded."
     exit 0
 }
 
@@ -41,6 +45,15 @@ while [[ $# -gt 0 ]]; do
             ZOOM="$2"
             shift 2
             ;;
+        -f|--file)
+            # Add specific FITS file to the array
+            if [[ -f "$2" ]]; then
+                SPECIFIC_FILES+=("$2")
+            else
+                echo "Warning: File '$2' not found, ignoring."
+            fi
+            shift 2
+            ;;
         -h|--help)
             show_help
             ;;
@@ -57,11 +70,17 @@ if ! command -v ds9 &> /dev/null; then
     exit 1
 fi
 
-# Check if there are any FITS files
-FITS_FILES=(*.fits)
-if [ ${#FITS_FILES[@]} -eq 0 ] || [ ! -f "${FITS_FILES[0]}" ]; then
-    echo "No FITS files found in current directory"
-    exit 1
+# Use specific files if provided, otherwise use all FITS files in current directory
+if [ ${#SPECIFIC_FILES[@]} -gt 0 ]; then
+    FITS_FILES=("${SPECIFIC_FILES[@]}")
+    echo "Using ${#FITS_FILES[@]} specified FITS file(s)"
+else
+    # Check if there are any FITS files
+    FITS_FILES=(*.fits)
+    if [ ${#FITS_FILES[@]} -eq 0 ] || [ ! -f "${FITS_FILES[0]}" ]; then
+        echo "No FITS files found in current directory"
+        exit 1
+    fi
 fi
 
 # Check if region file exists

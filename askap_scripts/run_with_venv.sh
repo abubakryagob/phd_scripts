@@ -14,6 +14,51 @@ RA=285.3871
 DEC=14.9691
 APERTURE_RADIUS=5  # Default aperture radius in pixels
 
+# Function to display help
+show_help() {
+  echo "Usage: $0 [options]"
+  echo ""
+  echo "Options:"
+  echo "  -f, --fits FILE1 [FILE2...]  Specify specific FITS files to analyze"
+  echo "  -r, --radius NUM             Set aperture radius in pixels (default: 5)"
+  echo "  -h, --help                   Display this help message"
+  echo ""
+  echo "Examples:"
+  echo "  $0                           Analyze all FITS files in current directory"
+  echo "  $0 -f image1.fits image2.fits  Analyze only specified FITS files"
+  exit 0
+}
+
+# Array to hold specific FITS files if provided
+SPECIFIC_FITS_FILES=()
+
+# Parse command line arguments
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -f|--fits)
+      # Collect all FITS files until the next option
+      shift
+      while [[ $# -gt 0 && ! $1 =~ ^- ]]; do
+        SPECIFIC_FITS_FILES+=("$1")
+        shift
+      done
+      ;;
+    -r|--radius)
+      APERTURE_RADIUS="$2"
+      shift 2
+      ;;
+    -h|--help)
+      show_help
+      ;;
+    *)
+      # Unknown option
+      echo "Unknown option: $1"
+      echo "Use -h or --help to see available options."
+      shift
+      ;;
+  esac
+done
+
 # Function to find the FITS directory
 find_fits_directory() {
   possible_dirs=(
@@ -81,18 +126,34 @@ echo ""
 echo "ZTF J1901+1458 Variability Analysis"
 echo "=================================="
 echo "Source position: RA=$RA, Dec=$DEC (J2000)"
-echo "Running full variability analysis..."
+
+# Build the command depending on whether specific files were provided
+COMMAND="python \"$SCRIPT_PATH\" \"$(pwd)\" \"$RA\" \"$DEC\" \"$APERTURE_RADIUS\""
+
+if [ ${#SPECIFIC_FITS_FILES[@]} -gt 0 ]; then
+  echo "Running analysis on ${#SPECIFIC_FITS_FILES[@]} specified FITS files..."
+  COMMAND="$COMMAND --fits"
+  for file in "${SPECIFIC_FITS_FILES[@]}"; do
+    COMMAND="$COMMAND \"$file\""
+  done
+else
+  echo "Running analysis on all FITS files in directory..."
+fi
+
 cd "$(pwd)"  # Change to current directory to ensure outputs are saved here
-python "$SCRIPT_PATH" "$(pwd)" "$RA" "$DEC" "$APERTURE_RADIUS"
+eval $COMMAND
 
 # Check if analysis was successful
 if [ $? -eq 0 ]; then
   echo ""
   echo "Variability analysis completed successfully."
-  echo "Results are in:"
-  echo "- variability_results.txt (numerical results)"
-  echo "- ZTF_J1901_light_curve.png (light curve plot)"
-  echo "- ZTF_J1901_flux_data.csv (raw measurements)"
+  echo "Results are in files named with the MS identifier for each MS source detected:"
+  echo "- variability_results_[MS_NAME].txt (numerical results)"
+  echo "- ZTF_J1901_[MS_NAME]_light_curve.png (light curve plot)"
+  echo "- ZTF_J1901_[MS_NAME]_flux_data.csv (raw measurements)"
+  echo ""
+  echo "Note: If multiple MS sources were detected in your FITS files,"
+  echo "separate output files have been created for each source."
 else
   echo ""
   echo "Error: Variability analysis failed."

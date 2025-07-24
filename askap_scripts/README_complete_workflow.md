@@ -59,9 +59,16 @@ Run the variability analysis on the time-series images:
 ```bash
 cd /path/to/time/series/fits/files
 /path/to/my_scripts/run_with_venv.sh
+
+# Or specify individual FITS files to analyze
+/path/to/my_scripts/run_with_venv.sh --fits file1.fits file2.fits file3.fits
+
+# You can also run the Python script directly
+python /path/to/my_scripts/analyze_variability.py . 285.3871 14.9691 5
+python /path/to/my_scripts/analyze_variability.py . 285.3871 14.9691 5 --fits file1.fits file2.fits
 ```
 
-This measures flux at the source position in each image and creates light curve plots.
+This measures flux at the source position in each image and creates light curve plots with MS-specific filenames.
 
 ## 3. Technical Implementation Details
 
@@ -117,12 +124,15 @@ For resource-intensive processing:
 
 ## 5. Interpreting Results
 
-The analysis produces several output files:
+The analysis produces several output files for each MS source detected, with MS names in the filenames:
 
 1. **FITS images** for each time segment
-2. **Light curve plot** showing flux vs. time
-3. **Variability statistics** in text format
-4. **Log files** with processing details
+2. **Light curve plot** showing flux vs. time (`ZTF_J1901_[MS_NAME]_light_curve.png`)
+3. **Variability statistics** in text format (`variability_results_[MS_NAME].txt`)
+4. **Flux measurements** in CSV format (`ZTF_J1901_[MS_NAME]_flux_data.csv`) 
+5. **Log files** with processing details
+
+If multiple MS sources are detected in your FITS files (for example, when analyzing files from different observations), separate output files will be created for each MS source, allowing you to compare variability across different observations.
 
 ## 6. Troubleshooting
 
